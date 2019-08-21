@@ -1,0 +1,1 @@
+{"bio": [{"Name": "Ichsan Kurniawan", "N I M": "1316010006", "Class": "EC6B", "Birth Place": "Tanjung Barulak", "Birth Date": "1997-10-14", "Gender": "Man", "Address": "GDC", "Telp": "+6282285752959", "E-Mail": "ichsankurniawan51@gmail.com"}]}
