@@ -587,7 +587,7 @@ class ScreenTwo(Screen):
                 cv2.waitKey(300)
 
             cv2.waitKey(1)
-            if sampleN > 19:
+            if sampleN > 39:
                 for x, y, w, h in faces:
                     # cv2.imwrite(path + str(name) + "/" + str(nim) + ".png", img[y - 75:y + h + 30, x - 10:x + w + 10])
                     cv2.imwrite('imgs/' + str(nim) + ".png", img[y - 75:y + h + 30, x - 10:x + w + 10])
