@@ -1,0 +1,497 @@
+<MainScreen>:
+    name: 'main'
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img_server/fr3.jpg'
+
+    FloatLayout:
+        Label:
+            text:"Welcome"
+            font_size: (root.width**2 + root.height**2) / 13**4.2
+            pos_hint: {"x":0.33, "top":0.93}
+            size_hint: 0.35, 0.15
+            # color: 0,0,0,1
+
+        Label:
+            text:"Face Recognition"
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.32, "top":0.7}
+            size_hint: 0.35, 0.15
+            # color: 0,0,0,1
+
+        Label:
+            text:"Based Presence System"
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.32, "top":0.6}
+            size_hint: 0.35, 0.15
+            # color: 0,0,0,1
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.2
+            font_size: (root.width**2 + root.height**2) / 13**4.1
+            text: "Continue"
+            on_release:
+                root.manager.transition.direction = "up"
+                root.manager.transition.duration = 1
+                root.manager.current = 'login'
+
+<LoginScreen>:
+    name: "login"
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img_server/fr7.jpg'
+
+    email: email
+    password: password
+
+    FloatLayout:
+
+        Label:
+            text:"Email : "
+            font_size: (root.width**2 + root.height**2) / 13**4.1
+            pos_hint: {"x":0.09, "top":0.9}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: email
+            font_size: (root.width**2 + root.height**2) / 13**4.3
+            multiline: False
+            pos_hint: {"x": 0.42 , "top":0.9}
+            size_hint: 0.42, 0.15
+            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+
+        Label:
+            text:"N I M : "
+            font_size: (root.width**2 + root.height**2) / 13**4.1
+            pos_hint: {"x":0.09, "top":0.7}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: password
+            font_size: (root.width**2 + root.height**2) / 13**4.2
+            multiline: False
+            # password: True
+            pos_hint: {"x": 0.42, "top":0.7}
+            size_hint: 0.42, 0.15
+            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.3}
+            size_hint: 0.6, 0.2
+            font_size: (root.width**2 + root.height**2) / 17**3.9
+            text: "Login"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.transition.duration = 1
+                root.goToAbsen()
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.2
+            font_size: (root.width**2 + root.height**2) / 17**4
+            text: "Register Data"
+            on_press:
+                root.manager.transition.direction = "up"
+                root.manager.transition.duration = 1
+                root.gotToLoginAdmin()
+
+<MessageBox>:
+    title: "Caution !"
+    size_hint: None, None
+    size: 450, 300
+    auto_dismiss: False
+    title_size: 15
+
+    FloatLayout:
+        orientation: "vertical"
+        Label:
+            text: "Upss!! Are you an admin?"
+            font_size: 15
+            size_hint: None, None
+            pos_hint: {'x': .35, 'y': .5}
+        Label:
+            text: "To register new data, you have login as admin"
+            font_size: 15
+            size_hint: None, None
+            pos_hint: {'x': .35, 'y': .4}
+        Button:
+            size_hint: None, None
+            text: "Cancel"
+            width: 200
+            height: 50
+            pos_hint: {'x': .0, 'y': 0}
+            on_release: root.dismiss()
+        Button:
+            size_hint: None, None
+            text: "Login as admin"
+            width: 200
+            height: 50
+            pos_hint: {'x': .5, 'y': 0}
+            on_press: root.obj.regist()
+            on_release: root.dismiss()
+
+
+<LoginScreenAdmin>:
+    name: "loginAdmin"
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img_server/fr7.jpg'
+
+    email: email
+    password: password
+
+    FloatLayout:
+        Label:
+            text:"Login as Administrator"
+            font_size: (root.width**2 + root.height**2) / 13**4.2
+            pos_hint: {"x":0.33, "top":0.99}
+            size_hint: 0.32, 0.15
+
+        Label:
+            text: "Username : "
+            font_size: (root.width**2 + root.height**2) / 13**4.2
+            pos_hint: {"x":0.09, "top":0.8}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: email
+            hint_text : 'Tap to input username or email'
+            font_size: (root.width**2 + root.height**2) / 13**4.4
+            multiline: False
+            pos_hint: {"x": 0.42 , "top":0.8}
+            size_hint: 0.42, 0.15
+            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+
+        Label:
+            text:"Password : "
+            font_size: (root.width**2 + root.height**2) / 13**4.2
+            pos_hint: {"x":0.09, "top":0.62}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: password
+            hint_text : 'Tap to input password'
+            font_size: (root.width**2 + root.height**2) / 13**4.4
+            multiline: False
+            password: True
+            pos_hint: {"x": 0.42, "top":0.62}
+            size_hint: 0.42, 0.15
+            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+
+        Button:
+            pos_hint:{"x":0.25,"y":0.25}
+            size_hint: 0.5, 0.17
+            font_size: (root.width**2 + root.height**2) / 17**3.9
+            text: "Login"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.transition.duration = 1
+                root.goTORegist()
+
+        Button:
+            pos_hint:{"x":0.25,"y":0.048}
+            size_hint: 0.5, 0.17
+            font_size: (root.width**2 + root.height**2) / 17**4
+            text: "Back to Home"
+            on_press:
+                root.reset()
+                root.manager.transition.direction = "down"
+                root.manager.transition.duration = 1
+                root.manager.current = 'login'
+
+
+<RegisterScreen>:
+    name: 'register'
+
+    nama: nama_id
+    nim: nim_id
+    kelas: kelas_id
+    tmp_lahir: tmp_lahir_id
+    tgl_lahir_y: tgl_lahir_y_id
+    tgl_lahir_m: tgl_lahir_m_id
+    tgl_lahir_d: tgl_lahir_d_id
+    j_kel: j_kel_id
+    alamat: alamat_id
+    no_telp: no_telp_id
+    email: email_id
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+        GridLayout:
+            cols: 2
+            Label:
+                text: 'Name'
+            TextInput:
+                id: nama_id
+                hint_text : 'Tap to input your name...'
+                # font_size: 10
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                multiline: False
+
+            Label:
+                text: 'N I M'
+            TextInput:
+                id: nim_id
+                hint_text : 'Tap to input your N I M...'
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                multiline: False
+
+            Label:
+                text: 'Class'
+            Spinner:
+                text: "Define your class, Tap Here.."
+                values: ["EC2A", "EC2B", "EC2C", "EC2D", "EC4A", "EC4B", "EC4C", "EC4D", "EC6A", "EC6B", "EC6C", "EC6D", "IKI2", "IKI4", "IKI6", "IKI8"]
+                id: kelas_id
+                on_text: kelas_id.text
+                # on_text: root.spinner_clicked(kelas_id.text)
+
+            Label:
+                text: 'Birth Place'
+            TextInput:
+                id: tmp_lahir_id
+                hint_text : 'Tap to input your Birth Place...'
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                multiline: False
+
+            Label:
+                text: 'Birth Date'
+            GridLayout:
+                orientation: 'horizontal'
+                cols: 3
+                Spinner:
+                    text: "Year"
+                    values: ["1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003"]
+                    id: tgl_lahir_y_id
+                    on_text: tgl_lahir_y_id.text
+                Spinner:
+                    text: "Month"
+                    values: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+                    id: tgl_lahir_m_id
+                    on_text: tgl_lahir_m_id.text
+                Spinner:
+                    text: "Day"
+                    values: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
+                    id: tgl_lahir_d_id
+                    on_text: tgl_lahir_d_id.text
+
+            Label:
+                text: 'Gender'
+            BoxLayout:
+                orientation: "horizontal"
+                Button:
+                    text: 'Man'
+                    on_press: root.btn_j_kel_l()
+                TextInput:
+                    id: j_kel_id
+                    padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                    hint_text: 'Tap Man/Woman'
+                    halign : 'center'
+                Button:
+                    text: 'Woman'
+                    on_press: root.btn_j_kel_p()
+
+            Label:
+                text: 'Address'
+            TextInput:
+                id: alamat_id
+                hint_text : 'Tap to input your Adrress...'
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                multiline: False
+
+            Label:
+                text: 'Telp(+62)'
+            TextInput:
+                id: no_telp_id
+                hint_text : 'Tap to input your Phone Number...'
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                multiline: False
+
+            Label:
+                text: 'Email'
+            TextInput:
+                id: email_id
+                hint_text : 'Tap to input your Email...'
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                multiline: False
+
+            Button:
+                text: 'Back to Main Menu'
+                on_press:
+                    root.btn_back()
+                    root.manager.transition.direction = 'left'
+                    root.manager.transition.duration = 1
+                    root.manager.current = 'loginAdmin'
+            Button:
+                text: 'Save'
+                on_release:
+                    root.save()
+                    root.manager.transition.direction = 'left'
+                    root.manager.transition.duration = 1
+
+
+<AbsenScreen>:
+    name: 'absen'
+
+    nama2: nama_id
+    nim2: nim_id
+    kelas2: kelas_id
+    tgl2: tgl_id
+    jam2: jam_id
+
+    GridLayout:
+        cols: 1
+        Label:
+            size_hint: 1, .1
+            color: 1,1,1,1          # R,G,B,A ( a harus 1)
+            text: 'Absence'
+
+        GridLayout:
+            cols: 3
+            size_hint: 0.5, .5
+            Button:
+                text: 'Scan Now'
+                on_release:
+                    root.predict()
+            Image:
+                id: imageView
+                source: 'img_server/user.jpg'
+                size_hint: 0.3, .1
+                allow_stretch: True
+            Button:
+                text:'Train Again'
+                on_release:
+                    root.reset()
+                    root.manager.current = 'train_again'
+                    root.manager.transition.direction = 'left'
+                    root.manager.transition.duration = 1
+
+        GridLayout:
+            orientation: 'horizontal'
+            cols: 2
+            Label:
+                text: 'Name'
+            TextInput:
+                id: nama_id
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                hint_text: 'Your Name will appear soon...'
+                halign : 'center'
+                multiline: False
+            Label:
+                text: 'N I M'
+            TextInput:
+                id: nim_id
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                hint_text: 'Your N I M will appear soon...'
+                halign : 'center'
+                multiline: False
+            Label:
+                text: 'Class'
+            TextInput:
+                id: kelas_id
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                hint_text: 'Your Class will appear soon...'
+                halign : 'center'
+                multiline: False
+            Label:
+                text: 'Date'
+            TextInput:
+                id: tgl_id
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                hint_text: 'Current absence Date'
+                halign : 'center'
+                multiline: False
+            Label:
+                text: 'Time'
+            TextInput:
+                id: jam_id
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                hint_text: 'Current absence Time'
+                halign : 'center'
+                multiline: False
+
+        BoxLayout:
+            size_hint_y: .2
+            Button:
+                size_hint_x: 0.15
+                text: '<'
+                on_press:
+                    root.reset()
+                    root.manager.transition.direction = 'right'
+                    root.manager.transition.duration = 1
+                    root.manager.current = 'login'
+            Button:
+                text:'Confirm'
+                on_press:
+                    root.send_data()
+                    root.manager.transition.direction = 'right'
+                    root.manager.transition.duration = 1
+
+<OtherScreen>:
+    name: 'train_again'
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img_server/fr1.jpg'
+
+    nama: nama_id
+
+    GridLayout:
+        cols: 1
+        padding: 100,100
+
+        GridLayout:
+            orientation: 'horizontal'
+            cols: 1
+            size_hint_y: .1
+            # padding_y: .
+            Label:
+                text: 'Train New Image'
+                # size_hint: 1, .1
+                font_size: 30
+            TextInput:
+                id: nama_id
+                # size_hint: 1, .1
+                # padding: 10,10
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                hint_text: 'Input Your Name'
+                halign : 'center'
+                multiline: False
+                font_size: 20
+
+        BoxLayout:
+            size_hint_y: .1
+            Button:
+                text: '<'
+                size_hint_x: 0.15
+                padding: 10,10
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.transition.duration = 1
+                    root.manager.current = 'absen'
+            Button:
+                text:'40 Sample (Recommended)'
+                # padding: 10,10
+                on_release:
+                    root.capt_40()
+                    root.manager.transition.direction = 'right'
+                    root.manager.transition.duration = 1
+            Button:
+                text:'50 Sample'
+                # padding: 10,10
+                on_release:
+                    root.capt_50()
+                    root.manager.transition.direction = 'right'
+                    root.manager.transition.duration = 1
