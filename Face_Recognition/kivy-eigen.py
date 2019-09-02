@@ -351,18 +351,7 @@ Builder.load_string('''
                     root.capt_50()
                     root.manager.transition.direction = 'right'
                     root.manager.transition.duration = 1
-                    root.manager.current = 'do_absent'
-<Pop>:
-    name: 'pop'
-    Label:
-        text: "You pressed the button"
-        size_hint: 0.6, 0.2
-        pos_hint: {"x":0.2, "top":1}
 
-    Button:
-        text: "Close"
-        size_hint: 0.8, 0.2
-        pos_hint: {"x":0.1, "y":0.1}
 ''')
 
 class MainScreen(Screen):
@@ -772,19 +761,6 @@ class ScreenThree(Screen):
 
         # self.show_popup()
 
-    def show_popup(self):
-        self.box = FloatLayout()
-        self.lab = (Label(text="Training Finish", font_size=15, size_hint=(None, None), pos_hint={'x': .35, 'y': .6}))
-        self.box.add_widget(self.lab)
-        self.but = (Button(text="Close", size_hint=(None, None), width=200, height=50, pos_hint={'x': .27, 'y': 0}))
-        self.box.add_widget(self.but)
-
-        self.main_pop = Popup(title="Caution", content=self.box, size_hint=(None, None), size=(450, 300), auto_dismiss=False, title_size=15)
-        self.but.bind(on_press=self.main_pop.dismiss)
-        self.main_pop.open()
-
-class Pop(Screen):
-    pass
 
 
 sm = ScreenManager()
@@ -792,7 +768,6 @@ sm.add_widget(MainScreen())
 sm.add_widget(ScreenOne())
 sm.add_widget(ScreenTwo())
 sm.add_widget(ScreenThree())
-sm.add_widget(Pop())
 
 
 class MainApp(App):
